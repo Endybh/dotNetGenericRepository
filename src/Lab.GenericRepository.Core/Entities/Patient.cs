@@ -8,4 +8,6 @@ public class Patient:BaseEntity
     public string Address{get;set;}
     public string NamePersonReference{get;set;}
     public string PhoneReference{get;set;}
+
+    public virtual ICollection<MedicalRecord> MedicalRecords{get;set;}
 }
