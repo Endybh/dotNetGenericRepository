@@ -7,8 +7,7 @@ namespace Lab.GenericRepository.Core
         Task<Entity> AddAsync(Entity entitie);
         Task UpdateAsync(Entity entitie);
         Task<List<Entity>> SelectAsync(Expression<Func<Entity, bool>> predicate);
-        Task<List<Entity>> SelectAsync(Expression<Func<Entity, bool>> predicate, params Expression<Func<Entity, object>>[] includes);
-        Task<Entity> GetAsync(int id);
+        Task<List<Entity>> SelectAsync(Expression<Func<Entity, bool>> predicate, params Expression<Func<Entity, object>>[] includes);        
         Task DeleteAsync(Entity entitie);
     }
 }
