@@ -21,15 +21,16 @@ namespace Lab.GenericRepository.Core
         {
             var medicalRecords = await _medicalRecordRepository.SelectAsync(mr=>(mr.SectionDateHour - DateTime.Now).Days > 7);
             
-            return medicalRecords.Select(m => new Patient
+            List<Patient> patients = new List<Patient>();
+
+            foreach(var medicalRecord in medicalRecords)
             {
-                Address = m.Patient.Address,
-                BirthDate = m.Patient.BirthDate,
-                ContactPhoneNumber = m.Patient.ContactPhoneNumber,
-                Name = m.Patient.Name,
-                NamePersonReference = m.Patient.NamePersonReference,
-                PhoneReference = m.Patient.PhoneReference
-            }).ToList();
+                Patient patient = new Patient(medicalRecord.Patient.Name, medicalRecord.Patient.ContactPhoneNumber, 
+                                              medicalRecord.Patient.BirthDate, medicalRecord.Patient.Address, 
+                                              medicalRecord.Patient.NamePersonReference, medicalRecord.Patient.PhoneReference);
+                patients.Add(patient);
+            }
+            return patients;
                    
         }
 

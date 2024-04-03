@@ -2,10 +2,24 @@
 
 public class Patient:BaseEntity
 {
-    public string Name{get;set;}
-    public string ContactPhoneNumber{get;set;}
-    public DateTime BirthDate{get;set;}
-    public string Address{get;set;}
-    public string NamePersonReference{get;set;}
-    public string PhoneReference{get;set;}
+    public string Name{get;}
+    public string ContactPhoneNumber{get;}
+    public DateTime BirthDate{get;}
+    public string Address{get;}
+    public string NamePersonReference{get;}
+    public string PhoneReference{get;}
+
+    public Patient(string name, string contactPhoneNumber, DateTime birthDate, string address, 
+                   string namePersonReference, string phonePersonReference)
+    {
+        Id = Guid.NewGuid();
+        Name = name;
+        ContactPhoneNumber = contactPhoneNumber;
+        BirthDate = birthDate;
+        Address = address;
+        NamePersonReference = namePersonReference;
+        PhoneReference = phonePersonReference;
+
+        Validate(this, new PatientValidator());
+    }
 }
